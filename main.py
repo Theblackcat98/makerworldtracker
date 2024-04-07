@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import json
 import time
+import asyncio
 
 URL = "https://makerworld.com/en/@mintflavour"
 app = FastAPI()
@@ -93,6 +94,20 @@ async def get_last():
     return collect_and_save_data()
 
 
+@app.get("/history")
+async def get_history():
+    try:
+        with open("data.json", "r") as f:
+            return json.loads(f.read())
+    except FileNotFoundError as e:
+        return []
+
+
 @app.on_event("startup")
 async def startup_event():
     collect_and_save_data()
+
+    # run collect_and_save_data every 15 minutes
+    while True:
+        await asyncio.sleep(900)
+        collect_and_save_data()
