@@ -1,1 +1,4 @@
-fastapi[all]
+fastapi
+uvicorn
+requests
+beautifulsoup4
