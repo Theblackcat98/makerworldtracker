@@ -5,7 +5,7 @@ import json
 import time
 import asyncio
 
-URL = "https://makerworld.com/en/@mintflavour"
+URL = "https://makerworld.com/en/@theblackcat"
 app = FastAPI()
 
 
